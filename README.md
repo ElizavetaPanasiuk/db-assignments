@@ -1,18 +1,15 @@
-The goal of the tasks is to get basic knowledge of SQL and MongoDB functions and approaches to work with data.                                                     
+The goal of the task is to get basic knowledge of SQL functions and approaches to work with data in SQL.                                                     
  https://dev.mysql.com/doc/refman/5.7/en/function-reference.html                          
                                                                                           
- Start from scratch can be complex for the tasks, if it's the case, please check
- - W3S which has quite good basis to start.                                       
- https://www.w3schools.com/sql/sql_syntax.asp
- - "MongoDB University"
- https://university.mongodb.com/courses/M001/about 
+ The course do not includes basic syntax explanations. If you see the SQL first time please read W3S which has quite good basis to start.                                       
+ https://www.w3schools.com/sql/sql_syntax.asp      
  
 ## Scheme of Northwind database
 The database is quite popular for Teaching Cases. You'll find the DB scheme in the Readme bellow.
  
 ![Northwind database schema](Northwind_A4_size_for_Print.png "Northwind database schema")
 
-## DB Assignments  [![Build Status](https://travis-ci.org/AisBrestEdu/db-assignments.svg?branch=master)](https://travis-ci.org/AisBrestEdu/db-assignments)
+## DB Assignments  [![Build Status](https://travis-ci.org/ElizavetaPanasiuk/db-assignments.svg?branch=master)](https://travis-ci.org/ElizavetaPanasiuk/db-assignments)
 
 To start DB Assignments please follow the next steps:
 *  [Fork this repo](#user-content-how-to-fork-this-repo)
@@ -35,24 +32,18 @@ To start DB Assignments please follow the next steps:
   git commit -m "Update the links"
   git push origin master
 ```
-* Open https://github.com/AisBrestEdu/db-assignments and test the build icon. Now it will run all tests and update status once you push changes to github. Keep this icon green!
+* Open https://github.com/ElizavetaPanasiuk/db-assignments and test the build icon. Now it will run all tests and update status once you push changes to github. Keep this icon green!
 
 
 ### How to setup work environment
 * Download and install the latest [Nodejs](https://nodejs.org/en/download/stable/).
 * Run `npm install` from you repository folder to download the required modules. All dependent modules will be located in the  *node_modules* folder.
-* **MySQL**
-  * Install [MySQL](https://dev.mysql.com/downloads/mysql/5.5.html). **That's important:** The tests checked on Mysql 5.7 and Mysql 8.0 only.
-  * Default mysql user and password which we use for the tasks is "**root / password**", but you can override these via environmet variables. 
-    Example for linux: `USER_NAME=root PASSWORD=password HOST=localhost npm test`.
-  * [Restore **dumps/northwind.sql** dump](https://john-dugan.com/dump-and-restore-mysql-databases-in-windows/). To do that, in general case, you need to execute the command `mysql < [pathToTheFolder]/dumps/northwind.sql`.
-  * To connect to database and edit queries you can use any GUI like [dbeaver](https://dbeaver.io/) or [MySQL Workbench](https://www.mysql.com/products/workbench/).
-* **MongoDB**
-  * Download and install [MongoDB community serrver](https://www.mongodb.com/try/download/community)
-  * Restore dump using [mongorestore](https://docs.mongodb.com/manual/reference/program/mongorestore/#bin.mongorestore).
-    In our case, execute `mongorestore [pathToTheFolder]/dumps/northwind_mongodb/`
-  * To connect to database and edit queries you can use any GUI like [Robo3T](https://robomongo.org/download) or [Compass](https://www.mongodb.com/products/compass)
-* Open your favorite editor and complete tasks. Take an attention, tasks has notes and hints in comments.
+* Install [MySQL](https://dev.mysql.com/downloads/mysql/5.5.html). **That's important:** The tests checked on Mysql 5.7 and Mysql 8.0 only.
+* Default mysql user and password which we use for the tasks is "**root / password**", but you can override these via environmet variables. 
+Example for linux: `USER_NAME=root PASSWORD=password HOST=localhost npm test`.
+* [Restore **northwind.sql** dump](https://john-dugan.com/dump-and-restore-mysql-databases-in-windows/). To do that, in general case, you need to execute the command `mysql < [pathToTheFolder]/northwind.sql`.
+* To connect to database and edit queries you can use any GUI like [dbeaver](https://dbeaver.io/) or [MySQL Workbench](https://www.mysql.com/products/workbench/).
+* Open your favorite editor and complete tasks.
 * Open your terminal and use `npm test` command to run all tests. You can run single file by passing it as argument `npm test ./test/sql-tasks.js`.
 * The local repo folder has the following structure: <pre>
     node_modules - app dependences restored by `npm install` command, you can delete this folder and restore later again.
@@ -85,7 +76,7 @@ and run the unit tests again. Find one test failed (red). Now it's time to fix i
 * Implement the function by any way and verify your solution by running tests until the failed test become passed (green).
 * Your solution work, but now time to refactor it. Try to make your code as pretty and simple as possible keeping up the test green.
 * Once you can't improve your code and tests are passed you can commit your solution.
-* Push your updates to github server and check if tests passed on [travis-ci](https://travis-ci.org/AisBrestEDU/db-assignments/builds).
+* Push your updates to github server and check if tests passed on [travis-ci](https://travis-ci.org/ElizavetaPanasiuk/db-assignments/builds).
 * If everything is OK you can try to resolve the next task.
 
 ### How to debug tasks
@@ -115,9 +106,7 @@ There is an easier way to debug for beginners with free Visual Studio Code:
               "HOST": "localhost", 
               "USER_NAME": "root", 
               "PASSWORD": "password", 
-              "DATABASE": "northwind",
-              "MONGO_HOST": "mongodb://localhost:27017",
-              "MONGO_DB": "northwind"
+              "DATABASE": "northwind" 
            }
          },
          ...
