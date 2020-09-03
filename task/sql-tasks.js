@@ -273,10 +273,9 @@ async function task_1_12(db) {
  */
 async function task_1_13(db) {
     let result = await db.query(`
-        SELECT 
-            COUNT(ProductID) AS "TotalOfCurrentProducts",
-            SUM(Discontinued) AS "TotalOfDiscontinuedProducts"
-        FROM Products
+        SELECT
+            (SELECT COUNT(*) FROM Products) AS "TotalOfCurrentProducts",
+            (SELECT COUNT(*) FROM Products WHERE Discontinued = 1) AS "TotalOfDiscontinuedProducts"
     `);
     return result[0];
 }
@@ -310,18 +309,18 @@ async function task_1_14(db) {
 async function task_1_15(db) {
     let result = await db.query(`
         SELECT 
-            SUM(MONTH(OrderDate) = 1) AS "January",
-            SUM(MONTH(OrderDate) = 2) AS "February",
-            SUM(MONTH(OrderDate) = 3) AS "March",
-            SUM(MONTH(OrderDate) = 4) AS "April",
-            SUM(MONTH(OrderDate) = 5) AS "May",
-            SUM(MONTH(OrderDate) = 6) AS "June",
-            SUM(MONTH(OrderDate) = 7) AS "July",
-            SUM(MONTH(OrderDate) = 8) AS "August",
-            SUM(MONTH(OrderDate) = 9) AS "September",
-            SUM(MONTH(OrderDate) = 10) AS "October",
-            SUM(MONTH(OrderDate) = 11) AS "November",
-            SUM(MONTH(OrderDate) = 12) AS "December"
+            COUNT(IF(MONTH(OrderDate) = 1, 1, NULL)) AS "January",
+            COUNT(IF(MONTH(OrderDate) = 2, 1, NULL)) AS "February",
+            COUNT(IF(MONTH(OrderDate) = 3, 1, NULL)) AS "March",
+            COUNT(IF(MONTH(OrderDate) = 4, 1, NULL)) AS "April",
+            COUNT(IF(MONTH(OrderDate) = 5, 1, NULL)) AS "May",
+            COUNT(IF(MONTH(OrderDate) = 6, 1, NULL)) AS "June",
+            COUNT(IF(MONTH(OrderDate) = 7, 1, NULL)) AS "July",
+            COUNT(IF(MONTH(OrderDate) = 8, 1, NULL)) AS "August",
+            COUNT(IF(MONTH(OrderDate) = 9, 1, NULL)) AS "September",
+            COUNT(IF(MONTH(OrderDate) = 10, 1, NULL)) AS "October",
+            COUNT(IF(MONTH(OrderDate) = 11, 1, NULL)) AS "November",
+            COUNT(IF(MONTH(OrderDate) = 12, 1, NULL)) AS "December"
         FROM Orders
         WHERE YEAR(OrderDate) = 1997
     `);
@@ -476,10 +475,8 @@ async function task_1_22(db) {
         FROM Customers AS Customers2
         INNER JOIN Orders AS Orders2 ON Customers2.CustomerID = Orders2.CustomerID 
         INNER JOIN OrderDetails AS OrderDetails2 ON Orders2.OrderID = OrderDetails2.OrderID 
-        WHERE Customers2.CompanyName = Customers.CompanyName) 
+        WHERE Customers2.CustomerID = Customers.CustomerID) 
     ORDER BY \`PricePerItem\` DESC, \`CompanyName\`, \`ProductName\`
-
-
 `);
 return result[0];
 }
